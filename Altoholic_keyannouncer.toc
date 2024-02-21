@@ -1,0 +1,6 @@
+## Interface: 100200
+## Title: Altoholic_Keyannouncer
+## Author: Discord@alieni
+## Dependencies: DataStore
+## IconTexture: Interface\Icons\inv_relics_hourglass
+core.lua
