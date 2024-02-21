@@ -8,6 +8,7 @@ if not IsAddOnLoaded("DataStore") then
    return
 end
 
+
 local function printKeystones()
    local x = DataStore:GetCharacters()
    local keystones = {}
@@ -48,14 +49,15 @@ SLASH_AVAIMET1 = "/aks"
 SlashCmdList["AVAIMET"] = printKeystones
 
 
-local myAddonFrame = CreateFrame("Frame")
-myAddonFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-myAddonFrame:RegisterEvent("ADDON_LOADED")
-myAddonFrame:SetScript("OnEvent", function(self, event, addonName)
+local eventHandler = CreateFrame("Frame")
+eventHandler:RegisterEvent("PLAYER_ENTERING_WORLD")
+eventHandler:RegisterEvent("ADDON_LOADED")
+eventHandler:SetScript("OnEvent", function(self, event, addonName)
     if event == "PLAYER_ENTERING_WORLD" then 
         print("|cFFFF0000---------------------------------------------|r")
         print("|cFFFF0000[AltKeySharing] Sharing keys enabled /aks |r")
         print("|cFFFF0000---------------------------------------------|r")
+        eventHandler:UnregisterEvent("PLAYER_ENTERING_WORLD")
     elseif event == "ADDON_LOADED" and addonName == "Altoholic_Summary" then
         local button = CreateFrame("Button", nil, AltoholicFrame.TabSummary, "GameMenuButtonTemplate")
         button:SetPoint("BOTTOMRIGHT", AltoholicFrame.TabSummary, "BOTTOMRIGHT", GetScreenWidth()*-0.135, 0)
@@ -67,9 +69,9 @@ myAddonFrame:SetScript("OnEvent", function(self, event, addonName)
          GameTooltip:SetText("Click to share your alts' m+ keys to party. (if you are in group)", nil, nil, nil, nil, true)
          GameTooltip:Show()
      end)
-     
      button:SetScript("OnLeave", function(self)
          GameTooltip:Hide()
      end)
+     eventHandler:UnregisterEvent("ADDON_LOADED")
     end
 end)
