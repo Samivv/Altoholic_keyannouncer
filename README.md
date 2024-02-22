@@ -1,4 +1,4 @@
-A very simple plugin for the World of Warcraft addon Altoholic. 
+A very simple and unofficial plugin for the World of Warcraft addon Altoholic. 
 
 It lets you share all your alts' m+ keys to your party (if in one) with a simple command(/aks) or via button added to Altoholic interface.
 
